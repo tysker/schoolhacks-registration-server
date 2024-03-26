@@ -29,4 +29,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/schoolhack_registration_server:1.0.0
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/schoolhack_registration_server:latest
