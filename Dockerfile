@@ -3,3 +3,5 @@
 FROM node:20.0-alpine as build-stage
 WORKDIR /server
 COPY ./ ./
+RUN npm install
+CMD ["npm", "run", "start"]

@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start:server_dev": "nodemon --exec ts-node server.ts",
-    "start:server_prod": "nodemon --exec ts-node server.ts",
+    "start": "nodemon --exec ts-node server.ts",
     "import": "ts-node ./dev-data/import-dev-data.ts --import",
     "delete": "ts-node ./dev-data/import-dev-data.ts --delete"
   },
