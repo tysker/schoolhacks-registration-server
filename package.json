@@ -1,0 +1,37 @@
+{
+  "name": "schoolhack_workshop_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "start:server_dev": "nodemon --exec ts-node server.ts",
+    "start:server_prod": "nodemon --exec ts-node server.ts",
+    "import": "ts-node ./dev-data/import-dev-data.ts --import",
+    "delete": "ts-node ./dev-data/import-dev-data.ts --delete"
+  },
+  "keywords": [],
+  "author": "Jörg Oertel",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/nodemailer": "^6.4.14",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "log4js": "^6.9.0",
+    "mongoose": "^7.0.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^2.0.21",
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.14.6",
+    "@types/validator": "^13.7.14",
+    "morgan": "^1.10.0",
+    "ts-node": "^10.9.1"
+  }
+}

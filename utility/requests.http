@@ -1,0 +1,32 @@
+GET {{URl}}/workshops
+
+###
+POST {{URl}}/workshops
+Content-Type: application/json
+
+{
+  "workshop": "ContainerLarge 1",
+  "description": "This is a workshop",
+  "title": "ContainerLarge 1",
+  "instructor": "John Smith",
+  "date": "2021-09-01",
+  "time": "10:00",
+  "duration": "2 hours",
+  "place": "Location 1",
+  "price": 100,
+  "image": "mobile.jpg",
+  "seats": 20,
+  "isEnded": false
+}
+
+###
+POST {{URl}}/users/65fe889050063d41130e4125
+Content-Type: application/json
+
+{
+  "name": "Michelle",
+  "email": "michelle@mail.com"
+}
+
+###
+GET {{URl}}/users/65fe889050063d41130e4125
