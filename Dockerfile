@@ -4,5 +4,5 @@ FROM node:20.0.0
 WORKDIR /server
 COPY ./ ./
 RUN npm install
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:server"]
 EXPOSE 3000
