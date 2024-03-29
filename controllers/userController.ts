@@ -4,6 +4,7 @@ import Workshop from "../models/workshopModel";
 import AppError from "../utility/appError";
 import catchAsync from "../utility/catchAsync";
 import sendEmail from "../utility/email";
+import {WorkshopItem} from "../types/types";
 
 export const getAllUsersFromAWorkshop = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -55,7 +56,7 @@ export const createUserAndAddToWorkshop = catchAsync(
         //  try {
         await sendEmailToUser({
             email: req.body.email,
-            title: workshop.title,
+            workshop: workshop!,
         });
 
 
@@ -69,20 +70,25 @@ export const createUserAndAddToWorkshop = catchAsync(
 
 type Mail = {
     email: string;
-    title: string;
+    workshop: WorkshopItem;
 }
 
 
 const sendEmailToUser = async function (mail: Mail) {
-    console.log("Sending email to user", mail.email, mail.title)
+    console.log("Sending email to user", mail.email, mail.workshop.title);
     await sendEmail({
         email: mail.email,
         subject: "Welcome to the workshop!",
         message: `<div>
-              <h4>Welcome to the ${mail.title}</h4>
+              <h4>Welcome to the ${mail.workshop.title}</h4>
+              <p>Date: ${mail.workshop.date}</p>
+              <p>Time: ${mail.workshop.time}</p>
+              <p>Location: ${mail.workshop.location}</p>
+              
               <br>
-              <p>Thank you for registering for the workshop.</p>
-              <p>We are excited to have you join us. Please let us know if you have any questions or need any additional
+              <p>Dear Participant,</p>
+              <p>Thank you for registering for the workshop. We are excited to have you join us.</p>
+              <p>Please let us know if you have any questions or need any additional
               information.</p>
               <br>
               <p>Best regards,<br><br><span style="font-size: 20px">The SchoolHacks Team</span></p>
