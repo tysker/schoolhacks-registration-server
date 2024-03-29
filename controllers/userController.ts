@@ -74,7 +74,7 @@ type Mail = {
 
 
 const sendEmailToUser = async function (mail: Mail) {
-
+    console.log("Sending email to user", mail.email, mail.title)
     await sendEmail({
         email: mail.email,
         subject: "Welcome to the workshop!",
