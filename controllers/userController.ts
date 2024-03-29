@@ -58,10 +58,12 @@ export const createUserAndAddToWorkshop = catchAsync(
         console.log("workshop", workshop)
 
         if(user && workshop) {
+            console.log("Sending email to user")
             sendEmailToUser({
                 email: user.email,
                 title: workshop.title,
             })
+            console.log("Email sent")
         }
 
         res.status(201).json({

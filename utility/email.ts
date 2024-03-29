@@ -38,6 +38,8 @@ const sendEmail = async (options: EmailOptions) => {
     try {
         await transporter.sendMail(mailOptions);
     } catch (e: any) {
+        console.log(e.message)
+        console.log(e)
         throw new Error(e.message);
     }
 
