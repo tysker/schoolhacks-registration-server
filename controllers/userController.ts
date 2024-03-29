@@ -30,8 +30,6 @@ export const createUserAndAddToWorkshop = catchAsync(
         const user = await User.findOne({email: req.body.email}, "-__v");
         const workshop = await Workshop.findById(req.params.id);
 
-        console.log("user", user)
-        console.log("workshop", workshop)
 
         if (!workshop) {
             return next(new AppError("No workshop found with that ID", 404));
@@ -54,17 +52,12 @@ export const createUserAndAddToWorkshop = catchAsync(
         workshop.users = Array.from(usersSet); // Convert set back to array
         await workshop.save();
 
-        console.log("user", user)
-        console.log("workshop", workshop)
 
-        if(user && workshop) {
-            console.log("Sending email to user")
-            sendEmailToUser({
-                email: user.email,
-                title: workshop.title,
-            })
-            console.log("Email sent")
-        }
+        sendEmailToUser({
+            email: req.body.email,
+            title: workshop.title,
+        })
+
 
         res.status(201).json({
             status: "success",

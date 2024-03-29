@@ -32,14 +32,12 @@ const sendEmail = async (options: EmailOptions) => {
         subject: options.subject,
         html: options.message,
     };
-    console.log(process.env.EMAIL_USERNAME)
+
 
     // 3) send the email
     try {
         await transporter.sendMail(mailOptions);
     } catch (e: any) {
-        console.log(e.message)
-        console.log(e)
         throw new Error(e.message);
     }
 
