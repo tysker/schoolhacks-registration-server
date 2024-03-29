@@ -37,7 +37,7 @@ const sendEmail = async (options: EmailOptions) => {
 
     } catch (error) {
         console.error("Error sending email:", error);
-        throw new Error("Failed to send email. Please try again later.");
+        throw new Error("Failed to send email. Please try again later. email.ts");
     }
 };
 

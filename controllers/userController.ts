@@ -52,11 +52,16 @@ export const createUserAndAddToWorkshop = catchAsync(
         workshop.users = Array.from(usersSet); // Convert set back to array
         await workshop.save();
 
-
-        sendEmailToUser({
-            email: req.body.email,
-            title: workshop.title,
-        })
+        try {
+            await sendEmailToUser({
+                email: req.body.email,
+                title: workshop.title,
+            });
+        }
+        catch (error) {
+            console.error("Error sending email:", error);
+            throw new AppError("Failed to send email. Please try again later. userController", 500);
+        }
 
 
         res.status(201).json({
