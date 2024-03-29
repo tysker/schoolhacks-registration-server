@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
-import * as dotenv from "dotenv";
-
-dotenv.config({path: "./config.env"});
+// import * as dotenv from "dotenv";
+//
+// dotenv.config({path: "./config.env"});
 
 type EmailOptions = {
     email: string;
@@ -10,10 +10,6 @@ type EmailOptions = {
 };
 const sendEmail = async (options: EmailOptions) => {
 
-    console.log(process.env.EMAIL_HOST)
-    console.log(process.env.EMAIL_PORT)
-    console.log(process.env.EMAIL_CIPHERS)
-    console.log(process.env.EMAIL_USERNAME)
     // 1) create a transporter
     const transporter = nodemailer.createTransport({
         // @ts-ignore
@@ -36,10 +32,15 @@ const sendEmail = async (options: EmailOptions) => {
         subject: options.subject,
         html: options.message,
     };
-
+    console.log(process.env.EMAIL_USERNAME)
 
     // 3) send the email
-    await transporter.sendMail(mailOptions);
+    try {
+        await transporter.sendMail(mailOptions);
+    } catch (e: any) {
+        throw new Error(e.message);
+    }
+
 };
 
 export default sendEmail;

@@ -56,9 +56,11 @@ const handleJWTError = () =>
 const handleJWTExpiredError = () =>
     new AppError('Expired token. Please login again!', 401);
 
-export default (err: any, req: Request, res: Response, next: NextFunction) => {
+export default (err: any, req: any, res: any, next: any) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
+
+    console.log('err', err)
 
     if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);
@@ -69,7 +71,10 @@ export default (err: any, req: Request, res: Response, next: NextFunction) => {
         if (error.code === 11000) error = handleDuplicateDB(error);
         if (error.name === 'ValidationError')
             error = handleValidationErrorDB(error);
+        if (error.name === 'JsonWebTokenError') error = handleJWTError();
+        if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
         sendErrorProd(error, res);
     }
 };
+

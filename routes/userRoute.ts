@@ -4,5 +4,4 @@ import {getAllUsersFromAWorkshop, createUserAndAddToWorkshop} from "../controlle
 const router = express.Router();
 
 router.route("/:id").get(getAllUsersFromAWorkshop).post(createUserAndAddToWorkshop);
-
 export default router;

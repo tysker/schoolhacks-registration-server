@@ -1,7 +1,7 @@
 import fs from "fs";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Workshop from "/home/joerg/Projects/portfolio/schoolhacks_workshop_page/server/models/workshopModel";
+import Workshop from "../models/workshopModel";
 
 dotenv.config({ path: "./config.env" });
 

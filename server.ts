@@ -8,7 +8,7 @@ const DB = process.env.DATABASE_DEV!;
 mongoose
   .connect(DB)
   .then(() => console.log("DB connection successful!"))
-  .catch((err) => console.log("DB connection failed!"));
+  .catch((err) => console.log(err.message));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
