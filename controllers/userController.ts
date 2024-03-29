@@ -57,11 +57,6 @@ export const createUserAndAddToWorkshop = catchAsync(
             email: req.body.email,
             title: workshop.title,
         });
-        // }
-        // catch (error) {
-        //     console.error("Error sending email:", error);
-        //     throw new AppError("Failed to send email. Please try again later. userController", 500);
-        // }
 
 
         res.status(201).json({
