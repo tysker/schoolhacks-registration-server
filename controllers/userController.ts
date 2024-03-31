@@ -3,7 +3,7 @@ import User from "../models/userModel";
 import Workshop from "../models/workshopModel";
 import AppError from "../utility/appError";
 import catchAsync from "../utility/catchAsync";
-import sendEmail from "../utility/email";
+import sendEmail from "../utility/mailService";
 import {WorkshopItem} from "../types/types";
 
 export const getAllUsersFromAWorkshop = catchAsync(

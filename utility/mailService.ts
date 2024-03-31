@@ -1,14 +1,24 @@
 import nodemailer from "nodemailer";
 import AppError from "./appError";
-// import * as dotenv from "dotenv";
-//
-// dotenv.config({path: "./config.env"});
 
 type EmailOptions = {
     email: string;
     subject: string;
     message: string;
 };
+
+type GeneralOptions = {
+    port: number;
+    host: string;
+    tls: {
+        ciphers: string;
+    }
+    auth: {
+        user: string;
+        pass: string;
+    }
+}
+
 const sendEmail = async (options: EmailOptions) => {
     try {
         // 1) create a transporter
@@ -25,7 +35,16 @@ const sendEmail = async (options: EmailOptions) => {
             },
         });
 
-        // 2) define email options
+        // 2) SMTP configuration
+        const verify = await transporter.verify()
+
+        if (verify) {
+            console.log("Server is ready to take our messages");
+        } else {
+            console.log("Server is not ready to take our messages");
+        }
+
+        // 3) define email options
         const mailOptions = {
             from: `SchoolHacks <${process.env.EMAIL_USERNAME}>`,
             to: options.email,
@@ -33,11 +52,12 @@ const sendEmail = async (options: EmailOptions) => {
             html: options.message,
         };
 
-        // 3) send the email
+        // 4) send the email
         await transporter.sendMail(mailOptions);
 
     } catch (error) {
         console.error("Error sending email:", error);
+        throw new AppError("Error sending email", 500);
     }
 };
 
